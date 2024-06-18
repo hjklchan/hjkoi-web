@@ -6,7 +6,7 @@ pub mod not_found;
 
 use dioxus::prelude::*;
 use crate::components::media::Index as Media;
-use crate::components::article::List as ArticleList;
+use crate::components::article::{List as ArticleList, Detail as ArticleDetail};
 use crate::components::not_found::NotFound;
 
 #[derive(Routable, PartialEq, Debug, Clone)]
@@ -15,8 +15,13 @@ enum Route {
     #[layout(Layout)]
         #[route("/")]
         Root {},
+        // Articles
+        // List
         #[route("/articles")]
         ArticleList {},
+        // Detail
+        #[route("/articles/:article_id")]
+        ArticleDetail { article_id: u64 },
         #[route("/media")]
         Media {},
         #[route("/:..segments")]

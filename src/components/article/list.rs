@@ -18,7 +18,7 @@ pub fn List() -> Element {
                             h2 { class: "text-md font-medium text-gray-900 title-font dark:text-white",
                                 "Rust 中智能指针的学习记录（一）"
                             }
-                            span { class: " text-gray-500 text-md",
+                            span { class: "text-gray-500 text-md",
                                 "March 21, 2024"
                             }
                         }
