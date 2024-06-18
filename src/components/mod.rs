@@ -64,6 +64,7 @@ pub fn Layout() -> Element {
                         div { class: "hidden md:flex items-center",
                             div { class: "hidden lg:flex items-center border-l border-gray-200 ml-4 pl-2",
                                 a { class: "ml-4 block text-gray-400 hover:text-gray-500",
+                                    target: "_blank",
                                     href: "https://github.com/hjklchan",
                                     "Github"
                                 }

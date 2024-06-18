@@ -4,6 +4,7 @@ use dioxus::prelude::*;
 pub fn Detail(article_id: u64) -> Element {
     tracing::info!("Article detail");
 
+    // TODO: Need to simply code here...
     let mut options = pulldown_cmark::Options::empty();
     options.insert(pulldown_cmark::Options::ENABLE_TABLES);
     let parser = pulldown_cmark::Parser::new_ext(include_str!("../../../README.md"), options);
