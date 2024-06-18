@@ -77,12 +77,7 @@ pub fn Layout() -> Element {
                 style: "min-height: 100vh;",
                 div { class: "flex flex-row justify-center font-light",
                     div { class: "text-gray-600 body-font overflow-hidden container pb-12 max-w-screen-xl mx-2 lg:mx-24 pt-7 grow",
-                        section {
-                            Outlet::<Route> {}
-                            // article { class: "markdown-body",
-                            //     // Real content from database
-                            // }
-                        }
+                        section { Outlet::<Route> {} }
                     }
                 }
             }
