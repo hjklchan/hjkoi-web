@@ -13,11 +13,11 @@ pub fn Detail(article_id: u64) -> Element {
     rsx! {
         section { class: "max-w-screen-xl",
             div {
-                div { class: "flex justify-between py-10",
+                div { class: "flex justify-between py-3 lg:py-10",
                     h1 { class: "text-xl font-semibold",
                         "Rust 中智能指针的学习记录（一）"
                     }
-                    span { class: "text-gray-500 text-lg",
+                    span { class: "hidden md:flex text-gray-500 text-lg",
                         "March 21, 2024"
                     }
                 }

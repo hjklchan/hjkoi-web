@@ -47,7 +47,7 @@ pub fn Layout() -> Element {
                 div { class: "py-1.5 px-2 max-w-screen-2xl mx-auto flex items-center justify-between leading-6",
                     div { class: "flex z-50 md:flex-1",
                         nav { class: "flex space-x-3 text-md items-center font-light text-slate-700 whitespace-nowrap",
-                            Link { class: "flex text-lg title-font font-medium items-center text-gray-900",
+                            Link { class: "flex text-lg title-font font-medium items-center text-gray-900 pr-1.5",
                                 to: Route::Root {},
                                 "hjkl1 :)"
                             }
