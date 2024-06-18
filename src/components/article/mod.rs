@@ -1,3 +1,3 @@
-mod index;
+mod list;
 
-pub use index::Index;
+pub use list::List;
