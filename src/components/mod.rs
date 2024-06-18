@@ -6,7 +6,7 @@ pub mod not_found;
 
 use dioxus::prelude::*;
 use crate::components::media::Index as Media;
-use crate::components::article::Index as Articles;
+use crate::components::article::List as ArticleList;
 use crate::components::not_found::NotFound;
 
 #[derive(Routable, PartialEq, Debug, Clone)]
@@ -16,7 +16,7 @@ enum Route {
         #[route("/")]
         Root {},
         #[route("/articles")]
-        Articles {},
+        ArticleList {},
         #[route("/media")]
         Media {},
         #[route("/:..segments")]
@@ -50,7 +50,7 @@ pub fn Layout() -> Element {
                                 to: Route::Media {},
                                 "媒体"
                             }
-                            Link { to: Route::Articles {}, "文章" }
+                            Link { to: Route::ArticleList {}, "文章" }
                             a { class: "", href: "/", "游戏" }
                             a { class: "", href: "/", "关于我" }
                         }
@@ -71,7 +71,7 @@ pub fn Layout() -> Element {
             div { class: "w-full text-sm",
                 style: "min-height: 100vh;",
                 div { class: "flex flex-row justify-center font-light",
-                    div { class: "text-gray-600 body-font overflow-hidden container pb-12 max-w-screen-xl mx-2 lg:mx-24 pt-9 grow",
+                    div { class: "text-gray-600 body-font overflow-hidden container pb-12 max-w-screen-xl mx-2 lg:mx-24 pt-7 grow",
                         section {
                             Outlet::<Route> {}
                             // article { class: "markdown-body",
