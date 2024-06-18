@@ -43,13 +43,13 @@ pub fn Root() -> Element {
 pub fn Layout() -> Element {
     rsx! {
         div { class: "bg-white pb-8",
-            header { class: "sticky top-0 z-30 bg-white bg-opacity-80 border-b h-10 backdrop-blur-md",
+            header { class: "sticky top-0 z-10 bg-[#E7ECEE] bg-opacity-80 shadow-md backdrop-blur-lg backdrop-filter firefox:bg-opacity-90",
                 div { class: "py-1.5 px-2 max-w-screen-2xl mx-auto flex items-center justify-between leading-6",
                     div { class: "flex z-50 md:flex-1",
                         nav { class: "flex space-x-3 text-md items-center font-light text-slate-700 whitespace-nowrap",
                             Link { class: "flex text-lg title-font font-medium items-center text-gray-900 pr-1.5",
                                 to: Route::Root {},
-                                "hjkl1 :)"
+                                "hjkl1:)"
                             }
                             Link {
                                 to: Route::Media {},
@@ -62,8 +62,8 @@ pub fn Layout() -> Element {
                     }
                     div { class: "hidden md:flex h-full justify-end ml-2 flex-1",
                         div { class: "hidden md:flex items-center",
-                            div { class: "hidden lg:flex items-center border-l border-gray-200 ml-4 pl-2",
-                                a { class: "ml-4 block text-gray-400 hover:text-gray-500",
+                            div { class: "hidden lg:flex items-center border-l border-gray-300 ml-4 pl-2",
+                                a { class: "ml-2 block text-gray-400 hover:text-gray-500",
                                     target: "_blank",
                                     href: "https://github.com/hjklchan",
                                     "Github"
@@ -84,7 +84,7 @@ pub fn Layout() -> Element {
             }
         }
 
-        footer { class: "sticky z-30 text-gray-400 border-t body-font",
+        footer { class: "sticky z-30 text-gray-400 border-t bg-[#E7ECEE] bg-opacity-80 backdrop-blur-lg backdrop-filter firefox:bg-opacity-90",
             div { class: "container mx-auto py-1.5 px-5 flex flex-wrap flex-col sm:flex-row",
                 p { class: "text-gray-400 text-sm text-center sm:text-left",
                     "© 2024 Dioxus Labs —"

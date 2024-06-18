@@ -15,7 +15,7 @@ pub fn List() -> Element {
     let total = range.len();
 
     rsx! {
-        section { class: "pb-3",
+        section { class: "pb-5 px-1.5",
             div { class: "flex justify-between items-center",
                 h1 { class: "text-3xl",
                     span { class: "font-medium", "Articles "}
@@ -36,12 +36,12 @@ pub fn List() -> Element {
                     div { class: "py-0.5",
                         Link {
                             to: Route::ArticleDetail { article_id: 1 },
-                            div { class: "hover:bg-gray-200 flex flex-wrap cursor-pointer",
+                            div { class: "hover:bg-[#E7ECEE] flex flex-wrap cursor-pointer py-1 px-1.5",
                                 div { class: "w-full flex flex-row justify-between gap-4",
-                                    h2 { class: "text-md font-medium text-gray-900 title-font dark:text-white",
+                                    h2 { class: "text-base font-medium text-gray-900 title-font",
                                         "Rust 中智能指针的学习记录（{i}）Rust 中智能指针的学习记录（{i}）"
                                     }
-                                    span { class: "text-end text-gray-500 text-md",
+                                    span { class: "w-1/2 text-end text-gray-500 text-md",
                                         "March 21, 2024"
                                     }
                                 }

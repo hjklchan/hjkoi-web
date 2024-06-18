@@ -15,7 +15,7 @@ pub fn Detail(article_id: u64) -> Element {
         section { class: "max-w-screen-xl",
             div {
                 div { class: "flex justify-between py-3 lg:py-10",
-                    h1 { class: "text-xl font-semibold",
+                    h1 { class: "text-3xl font-semibold",
                         "Rust 中智能指针的学习记录（一）"
                     }
                     span { class: "hidden md:flex text-gray-500 text-lg",
@@ -24,8 +24,8 @@ pub fn Detail(article_id: u64) -> Element {
                 }
 
                 div {
-                    article { class: "w-full py-3 prose",
-                        dangerous_inner_html: "{html_output}"
+                    article { class: "max-w-screen-xl py-3 prose",
+                        dangerous_inner_html: html_output
                     }
                 }
             }
