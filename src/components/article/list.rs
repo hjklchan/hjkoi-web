@@ -21,8 +21,8 @@ pub fn List() -> Element {
                     span { class: "font-medium", "Articles "}
                     "({total})"
                 }
-                span { class: "text-lg cursor-pointer block text-gray-400 hover:text-gray-500",
-                    onclick: move |_evt| tracing::info!("Create a new article"),
+                Link { class: "text-lg cursor-pointer block text-gray-400 hover:text-gray-500",
+                    to: Route::CreateArticle { },
                     "Create"
                 }
             }

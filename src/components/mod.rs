@@ -4,10 +4,12 @@ pub mod article;
 pub mod media;
 pub mod not_found;
 
-use dioxus::prelude::*;
+use crate::components::article::{
+    Create as CreateArticle, Detail as ArticleDetail, List as ArticleList,
+};
 use crate::components::media::Index as Media;
-use crate::components::article::{List as ArticleList, Detail as ArticleDetail};
 use crate::components::not_found::NotFound;
+use dioxus::prelude::*;
 
 #[derive(Routable, PartialEq, Debug, Clone)]
 #[rustfmt::skip]
@@ -19,9 +21,14 @@ enum Route {
         // List
         #[route("/articles")]
         ArticleList {},
+        // Create
+        #[route("/articles/create")]
+        CreateArticle {},
         // Detail
         #[route("/articles/:article_id")]
         ArticleDetail { article_id: u64 },
+
+        // Media
         #[route("/media")]
         Media {},
         #[route("/:..segments")]
@@ -35,9 +42,7 @@ pub fn App() -> Element {
 }
 
 pub fn Root() -> Element {
-    rsx! {
-
-    }
+    rsx! {}
 }
 
 pub fn Layout() -> Element {
@@ -49,7 +54,7 @@ pub fn Layout() -> Element {
                         nav { class: "flex space-x-3 text-md items-center font-light text-slate-700 whitespace-nowrap",
                             Link { class: "flex text-lg title-font font-medium items-center text-gray-900 pr-1.5",
                                 to: Route::Root {},
-                                "hjkl1:)"
+                                span { class: "hover:skew-y-6", "hjkl1:)" }
                             }
                             Link {
                                 to: Route::Media {},
