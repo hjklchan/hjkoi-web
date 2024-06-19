@@ -4,12 +4,9 @@ use dioxus::prelude::*;
 pub fn Detail(article_id: u64) -> Element {
     tracing::info!("Article detail");
 
-    // TODO: Need to simply code here...
-    let mut options = pulldown_cmark::Options::empty();
-    options.insert(pulldown_cmark::Options::ENABLE_TABLES);
-    let parser = pulldown_cmark::Parser::new_ext(include_str!("../../../README.md"), options);
+    let markdown_parser = pulldown_cmark::Parser::new(include_str!("../../../README.md"));
     let mut html_output = String::new();
-    pulldown_cmark::html::push_html(&mut html_output, parser);
+    pulldown_cmark::html::push_html(&mut html_output, markdown_parser);
 
     rsx! {
         section { class: "max-w-screen-xl",
