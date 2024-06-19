@@ -21,7 +21,7 @@ pub fn Detail(article_id: u64) -> Element {
                 }
 
                 div {
-                    article { class: "max-w-screen-xl py-3 prose",
+                    article { class: "max-w-screen-xl py-3 prose font-serif",
                         dangerous_inner_html: html_output
                     }
                 }

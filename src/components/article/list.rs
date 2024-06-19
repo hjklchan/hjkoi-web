@@ -1,18 +1,24 @@
 use crate::components::Route;
 use dioxus::prelude::*;
 
-#[derive(Debug)]
-#[allow(unused)]
+#[derive(Debug, serde::Deserialize, Clone, PartialEq)]
 pub struct ArticleItem {
     id: u64,
     title: String,
-    description: String,
-    created_at: String,
+    description: Option<String>,
+    created_at: Option<chrono::DateTime<chrono::Utc>>,
+}
+
+#[derive(Debug, serde::Deserialize)]
+pub struct ListRep {
+    items: Vec<ArticleItem>,
 }
 
 pub fn List() -> Element {
     let range = 1..30;
     let total = range.len();
+
+    let resource = use_resource(move || get_list(10));
 
     rsx! {
         section { class: "pb-5 px-1.5",
@@ -31,20 +37,45 @@ pub fn List() -> Element {
         section {
             div { class: "container mx-auto",
                 // Simple article list items
-                // TODO: Show each articles.
-                for i in range {
-                    div { class: "py-0.5",
-                        Link {
-                            to: Route::ArticleDetail { article_id: 1 },
-                            div { class: "hover:bg-[#E7ECEE] flex flex-wrap cursor-pointer py-1 px-1.5",
-                                div { class: "w-full flex flex-row justify-between gap-4",
-                                    h2 { class: "text-base font-medium text-gray-900 title-font",
-                                        "Rust 中智能指针的学习记录（{i}）Rust 中智能指针的学习记录（{i}）"
-                                    }
-                                    span { class: "w-1/2 text-end text-gray-500 text-md",
-                                        "March 21, 2024"
-                                    }
-                                }
+                match &*resource.read_unchecked() {
+                    Some(Ok(list)) => {
+                        rsx! {
+                            for item in list {
+                                ListItem { item: item.clone() }
+                            }
+                        }
+                    }
+                    Some(Err(_err)) => {
+                        rsx! { h1 { class: "text-2xl font-medium", "Occurred error!" } }
+                    }
+                    None => {
+                        rsx! { h1 { class: "text-2xl font-medium", "Loading..." } }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#[component]
+fn ListItem(item: ArticleItem) -> Element {
+    rsx! {
+        div { class: "py-0.5",
+            Link {
+                to: Route::ArticleDetail { article_id: item.id },
+                div { class: "hover:bg-[#E7ECEE] flex flex-wrap cursor-pointer py-1 px-1.5",
+                    div { class: "w-full flex flex-row justify-between gap-4",
+                        h2 { class: "text-base font-medium text-gray-900 title-font",
+                            "{item.title}"
+                        }
+                        span { class: "text-end text-gray-500 text-md",
+                            match item.created_at {
+                                Some(t) => {
+                                    t.format("%D").to_string()
+                                },
+                                None => {
+                                    String::from("Unknown")
+                                },
                             }
                         }
                     }
@@ -52,4 +83,11 @@ pub fn List() -> Element {
             }
         }
     }
+}
+
+async fn get_list(count: u32) -> Result<Vec<ArticleItem>, reqwest::Error> {
+    let url = "http://localhost:8888/articles";
+    let dat = &reqwest::get(url).await?.json::<ListRep>().await?;
+
+    Ok(dat.items.clone())
 }
